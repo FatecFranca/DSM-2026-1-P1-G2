@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin</title>
+  <link rel="stylesheet" href="../css/cardapio.css">
+</head>
+<body>
+
+<div class="admin-container">
+
+  <aside class="sidebar">
+    <h2>KERU Admin</h2>
+
+    <button>Produtos</button>
+    <button>Pedidos</button>
+  </aside>
+
+  <main class="conteudo">
+
+    <h1>Adicionar Produto</h1>
+
+    <div class="formulario">
+      <input type="text" id="nome" placeholder="Nome do produto">
+      <input type="text" id="preco" placeholder="Preço">
+
+      <button id="adicionar">
+        Adicionar Produto
+      </button>
+    </div>
+
+    <h2>Produtos</h2>
+    <div id="lista-produtos"></div>
+
+    <h2>Pedidos Recebidos</h2>
+    <div id="pedidos"></div>
+
+  </main>
+
+</div>
+
+<script src="../js/cardapio-admin.js"></script>
+</body>
+</html>
