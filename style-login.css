@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-image: url(./images/bg-login.png);
+    background-repeat: repeat;
+    background-size: 70pc;
+}
+
+.login{
+    background-color: white;
+    margin: 120px 550px 0px 550px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px 0px rgb(198, 88, 0) ;
+    padding: 10px;
+    position: relative;
+}
+
+.login .img-logo img{
+    width: auto;
+    height: 80px;
+    object-fit: contain;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.login .select-box h3{
+    font-size: 30px;
+    color: rgb(198, 88, 0);
+    margin: 20px 0px 10px 0px;
+}
+
+.login .select-box .opt-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.login .select-box .opt-login button{
+    background: linear-gradient(to bottom, rgb(240, 121, 23), rgb(245, 153, 77));
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-radius: 15px;
+    font-family: inherit;
+    border: none;
+    transition: 0.5s;
+    min-width: 145px;
+}
+
+.login .select-box .opt-login button:hover{
+    background: linear-gradient(to bottom, rgb(179, 88, 13), rgb(226, 122, 36));
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s;
+    background-color: rgb(155, 73, 6);
+    color: rgb(255, 255, 255);
+}
+
+.login small{
+    font-size: 12px;
+    opacity: 40%;
+}
+
+.login .form{
+    margin: 20px;
+    color: rgb(198, 88, 0);
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.login .form .field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.login .form .field label {
+  width: 100px;        
+  text-align: right;
+  flex-shrink: 0;     
+}
+
+.login .form .field input{
+    border-radius: 8px;
+    padding: 2px 10% 2px 5%;
+    margin-left: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.login .form .field input:focus{
+    outline: none;
+    border-bottom: 2px solid rgb(198, 88, 0);
+}
+
+.login .back{
+    width: 100%;
+    max-width: 35px;
+    object-fit: cover;
+    position: absolute;
+    left: 18px;
+    top: 20px;
+    filter: brightness(0.9);
+    transition: 0.5s;
+}
+
+.login .back:hover{
+    filter: brightness(0.7);
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
