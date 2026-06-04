@@ -9,25 +9,55 @@
 </head>
 <body>
 
-<header class="topo">
-  <h1>KERU Delivery</h1>
-</header>
+<div class="user-container">
+  <aside class="sidebar">
+    <a class="back-link" href="../login.html"><img class="back" src="../images/volte.png" alt="Voltar"></a>
+    <h2>KERU Delivery</h2>
 
-<main>
-  <h2>Cardápio</h2>
+    <nav class="menu-list">
+      <button data-target="cardapio-section" class="active">Cardápio</button>
+      <button data-target="carrinho-section">Carrinho</button>
+      <button data-target="checkout-section">Finalizar</button>
+    </nav>
+  </aside>
 
-  <div id="cardapio"></div>
+  <main class="conteudo user-conteudo">
+    <section id="cardapio-section" class="tab-section active">
+      <div class="page-header">
+        <h2>Cardápio</h2>
+      </div>
 
-  <section class="carrinho-box">
-    <h2>Carrinho</h2>
+      <div id="cardapio" class="cardapio-grid"></div>
+    </section>
 
-    <div id="carrinho"></div>
+    <section id="carrinho-section" class="tab-section">
+      <div class="page-header">
+        <h2>Carrinho</h2>
+      </div>
 
-    <button id="finalizar">
-      Finalizar Pedido
-    </button>
-  </section>
-</main>
+      <div id="carrinho" class="carrinho-list"></div>
+
+      <button id="finalizar">
+        Finalizar Pedido
+      </button>
+    </section>
+
+    <section id="checkout-section" class="tab-section">
+      <div class="page-header">
+        <h2>Finalizar Pagamento</h2>
+      </div>
+
+      <div class="checkout-box">
+        <p>Revise seu pedido antes de confirmar o pagamento.</p>
+        <ul id="checkout-items"></ul>
+        <div class="checkout-total"></div>
+        <button id="confirmar-pagamento">
+          Confirmar Pagamento
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
 
 <script src="../js/cardapio-user.js"></script>
 </body>
