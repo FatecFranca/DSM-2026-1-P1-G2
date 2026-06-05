@@ -108,3 +108,29 @@ function previewImagem(input) {
 }
 
 window.onload = carregarPerfil;
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    
+    const hash = window.location.hash;
+
+    if (hash) {
+        
+        document.querySelectorAll('.tab-section, .menu-list button, .menu-list a').forEach(elemento => {
+            elemento.classList.remove('active');
+        });
+
+        
+        const secaoAlvo = document.querySelector(hash);
+        
+        
+        const idSemHash = hash.replace('#', '');
+        const botaoAlvo = document.querySelector(`[data-target="${idSemHash}"]`);
+
+       
+        if (secaoAlvo && botaoAlvo) {
+            secaoAlvo.classList.add('active');
+            botaoAlvo.classList.add('active');
+        }
+    }
+});

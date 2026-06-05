@@ -56,6 +56,24 @@ body {
   display: block;
   margin-bottom: 15px;
 }
+
+.menu-list .sidebar-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f5714d, #f2994c);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 10px 20px rgba(245, 115, 77, 0.18);
+  display: block;
+  margin-bottom: 15px;
+  text-align: center
+}
+
 .menu-list a {
   text-decoration: none;
   color: white;
