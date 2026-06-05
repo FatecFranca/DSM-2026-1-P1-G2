@@ -34,7 +34,7 @@ body {
 
 .menu-list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   margin-top: 16px;
 }
 
