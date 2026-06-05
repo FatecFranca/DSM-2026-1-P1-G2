@@ -186,6 +186,53 @@ body {
   gap: 12px;
 }
 
+.formulario {
+  display: grid;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(198, 88, 0, 0.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+.formulario input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(198, 88, 0, 0.16);
+  background: #fff;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-upload label {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f5714d, #f2994c);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.produto-imagem {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  border-radius: 18px;
+  display: block;
+  margin-bottom: 18px;
+}
+
 .card-produto h3 {
   margin: 0;
   font-size: 1.2rem;

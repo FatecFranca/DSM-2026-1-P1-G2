@@ -29,7 +29,7 @@ function carregarCardapio() {
     const item = document.createElement('div');
     item.classList.add('card-produto');
     item.innerHTML = `
-      <img src="https://picsum.photos/300/200?random=${produto.id}" alt="${produto.nome}">
+      <img src="${produto.imagem || `https://picsum.photos/300/200?random=${produto.id}`}" alt="${produto.nome}">
 
       <div class="info-produto">
         <h3>${produto.nome}</h3>

@@ -1,26 +1,66 @@
 const botao = document.getElementById("adicionar");
+const fileInput = document.getElementById("imagemProduto");
+const previewProduto = document.getElementById("previewProduto");
+
+fileInput.addEventListener("change", () => {
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      previewProduto.src = reader.result;
+      previewProduto.style.display = "block";
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    previewProduto.src = "";
+    previewProduto.style.display = "none";
+  }
+});
 
 botao.addEventListener("click", () => {
+  const nome = document.getElementById("nome").value.trim();
+  const preco = document.getElementById("preco").value.trim();
 
-  const nome = document.getElementById("nome").value;
-  const preco = document.getElementById("preco").value;
+  if (!nome || !preco) {
+    alert("Preencha o nome e o preço do produto.");
+    return;
+  }
 
   const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
-
   const novoProduto = {
-    id: Date.now(1),
+    id: Date.now(),
     nome,
-    preco
+    preco,
+    imagem: null
   };
 
-  cardapio.push(novoProduto);
-
-  localStorage.setItem("cardapio", JSON.stringify(cardapio));
-
-  carregarProdutos();
-
-  alert("Produto adicionado!");
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      novoProduto.imagem = reader.result;
+      salvarProduto(novoProduto);
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    salvarProduto(novoProduto);
+  }
 });
+
+function salvarProduto(produto) {
+  const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
+  cardapio.push(produto);
+  localStorage.setItem("cardapio", JSON.stringify(cardapio));
+  carregarProdutos();
+  limparFormulario();
+  alert("Produto adicionado!");
+}
+
+function limparFormulario() {
+  document.getElementById("nome").value = "";
+  document.getElementById("preco").value = "";
+  fileInput.value = "";
+  previewProduto.src = "";
+  previewProduto.style.display = "none";
+}
 
 function carregarProdutos() {
 
@@ -37,10 +77,9 @@ function carregarProdutos() {
     div.classList.add("produto-admin");
 
     div.innerHTML = `
+      ${produto.imagem ? `<img src="${produto.imagem}" alt="Imagem do ${produto.nome}" class="produto-imagem">` : ""}
       <h3>${produto.nome}</h3>
-
       <p>${produto.preco}</p>
-
       <button onclick="removerProduto(${produto.id})">
         Excluir
       </button>
