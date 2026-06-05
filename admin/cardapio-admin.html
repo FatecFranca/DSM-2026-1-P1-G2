@@ -12,10 +12,10 @@
 <div class="admin-container">
 
   <aside class="sidebar">
-    <h2>KERU Admin</h2>
-
-    <button>Produtos</button>
-    <button>Perfil</button>
+    <nav class="menu-list">
+      <button>Produtos</button>
+      <a href="perfil-restaurante.html"><button>Perfil</button></a>
+    </nav>
   </aside>
 
   <main class="conteudo">
@@ -25,6 +25,12 @@
     <div class="formulario">
       <input type="text" id="nome" placeholder="Nome do produto">
       <input type="text" id="preco" placeholder="Preço">
+
+      <div class="file-upload">
+        <label for="imagemProduto" class="btn-secondary">Selecionar Foto</label>
+        <input type="file" id="imagemProduto" accept="image/*" style="display: none;">
+        <img id="previewProduto" src="" alt="Prévia do produto" style="display: none; max-width: 180px; margin-top: 10px;">
+      </div>
 
       <button id="adicionar">
         Adicionar Produto
@@ -42,5 +48,6 @@
 </div>
 
 <script src="../js/cardapio-admin.js"></script>
+<script src="../js/admin.js"></script>
 </body>
 </html>

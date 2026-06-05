@@ -11,14 +11,14 @@
 
 <div class="user-container">
   <aside class="sidebar">
-    <a class="back-link" href="../login.html"><img class="back" src="../images/volte.png" alt="Voltar"></a>
-    <h2>KERU Delivery</h2>
-
+    
     <nav class="menu-list">
       <button data-target="cardapio-section" class="active">Cardápio</button>
       <button data-target="carrinho-section">Carrinho</button>
       <button data-target="checkout-section">Finalizar</button>
+      <a href="perfil-usuario.html"><button data-target="perfil-section">Perfil</button></a>
     </nav>
+    <a href="../login.html"><img class="back" src="../images/button-exit-nobg.png" alt="sair" style="margin-top: 10px;"></a>
   </aside>
 
   <main class="conteudo user-conteudo">
@@ -56,9 +56,10 @@
         </button>
       </div>
     </section>
+    
   </main>
 </div>
-
+<script src="../js/usuario.js"></script>
 <script src="../js/cardapio-user.js"></script>
 </body>
 </html>

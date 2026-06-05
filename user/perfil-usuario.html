@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keru</title>
+    <link rel="icon" href="../images/isotipo-keru-nobg.png">
+    <link rel="stylesheet" href="../css/style-perfil.css">
+    <link rel="stylesheet" href="../css/cardapio.css">
+</head>
+
+<body>
+    <div class="admin-container">
+
+        <aside class="sidebar">
+
+            <nav class="menu-list">
+            <a href="cardapio.html#cardapio-section" class="sidebar-btn">Cardápio</a>
+            <a href="cardapio.html#carrinho-section" class="sidebar-btn">Carrinho</a>
+            <a href="cardapio.html#checkout-section" class="sidebar-btn">Finalizar</a>
+            <button data-target="perfil-section" class="active">Perfil</button>
+            </nav>
+           <a href="../login.html"><img class="back" src="../images/button-exit-nobg.png" alt="sair" style="margin-top: 10px;"></a>
+        </aside>
+
+        <div class="perfil-container">
+            <h2>Seu Perfil</h2>
+            <p class="subtitle">Gerencie as informações públicas do seu perfil</p>
+
+            <form class="perfil-form">
+
+                <div class="avatar-upload">
+                    <div class="avatar-preview">
+                        <img id="previewLogo" src="" alt="Logo"
+                            style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        </div>
+                    <label for="inputLogo" class="btn-secondary">Alterar Foto</label>
+                    <input type="file" id="inputLogo" accept="image/*" style="display: none;"
+                        onchange="previewImagem(this)">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="usuario-name">Nome</label>
+                    <input type="text" id="perfilNome" placeholder="Digite o Nome">
+                </div>
+                <div class="form-group">
+                    <label for="usuario-email">E-mail</label>
+                    <input type="text" id="perfilEmail" placeholder="Digite Seu E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="usuario-telefone">Telefone</label>
+                    <input type="text" id="perfilTelefone" placeholder="Digite Seu Telefone">
+                </div>
+
+
+                <div class="botoes">
+                    <button type="button" id="btnAlterar" class="btn-perfil" onclick="alterarPerfil()">Alterar</button>
+                    <button type="button" id="btnSalvar" class="btn-perfil" onclick="salvarPerfil()" style="display:none;">Salvar
+                        Alterações</button>
+                    <button type="button" id="btnCancelar" class="btn-perfil" onclick="cancelarEdicao()"
+                        style="display:none;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="../js/cardapio-admin.js"></script>
+        <script src="../js/usuario.js"></script>
+
+</body>
+
+</html>

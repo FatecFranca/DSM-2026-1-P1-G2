@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keru</title>
-    <link rel="icon" href="./images/isotipo-keru-nobg.png">
+    <link rel="icon" href="../images/isotipo-keru-nobg.png">
     <link rel="stylesheet" href="../css/style-login.css">
 </head>
 <body>
     <div class="login">
+        <a class="back-link" href="../login.html"><img class="back" src="../images/volte.png" alt="Volte"></a>
         <div class="img-logo">
             <img src="../images/logotipo-keru-nobg.png" alt="Keru Logo">
         </div>
@@ -17,10 +18,10 @@
             <form id="restaurant-code-form" class="form">
                 <div class="field">
                     <label for="restaurant-code">Código:</label>
-                    <input id="restaurant-code" type="text" maxlength="10" placeholder="Ex: 1001" required>
+                    <input id="inputCodigo" type="text" maxlength="10" placeholder="Ex: 1001" required>
                 </div>
                 <div class="opt-login">
-                    <button type="submit">Mostrar Restaurante</button>
+                    <button type="button" onclick="acessarCardapio()">Mostrar Restaurante</button>
                 </div>
             </form>
             <div id="restaurant-result" class="form" style="display:none;">
@@ -31,33 +32,30 @@
     </div>
 
     <script>
-        const restaurantes = {
-            '1001': 'Ke fome',
-            '1002': 'Cantina da Rua',
-            '1003': 'Delícias do Chef',
-            '1004': 'Grill & Temperos'
-        };
+        
 
-        const form = document.getElementById('restaurant-code-form');
-        const input = document.getElementById('restaurant-code');
-        const result = document.getElementById('restaurant-result');
-        const message = document.getElementById('restaurant-message');
+    function acessarCardapio() {
+        const codigo = document.getElementById("inputCodigo").value.trim().toUpperCase();
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const code = input.value.trim();
-            const restaurantName = restaurantes[code];
+        if (!codigo) {
+            alert("Digite o código do restaurante!");
+            return;
+        }
 
-            if (restaurantName) {
-                message.textContent = `Restaurante encontrado: ${restaurantName}`;
-                message.style.color = '#c65800';
-            } else {
-                message.textContent = 'Código não encontrado. Verifique e tente novamente.';
-                message.style.color = '#d12d2d';
-            }
+        const estabelecimentos = JSON.parse(localStorage.getItem("estabelecimentos")) || [];
+        const restaurante = estabelecimentos.find(r => r.codigo === codigo);
 
-            result.style.display = 'block';
-        });
+        if (!restaurante) {
+            const result = document.getElementById("restaurant-result");
+            const msg = document.getElementById("restaurant-message");
+            result.style.display = "block";
+            msg.textContent = "Código inválido. Verifique e tente novamente.";
+            return;
+        }
+
+        localStorage.setItem("restauranteCliente", JSON.stringify(restaurante));
+        window.location.href = "cardapio.html";
+    }
     </script>
 </body>
 </html>
