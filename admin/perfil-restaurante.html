@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keru</title>
+    <link rel="icon" href="../images/isotipo-keru-nobg.png"
+    <link rel="stylesheet" href="../css/style-perfil.css">
+    <link rel="stylesheet" href="../css/style-perfil.css">
+</head>
+<body>
+    <div class="admin-container">
+
+        <aside class="sidebar">
+            <h2>KERU Admin</h2>
+            <h2></h2>
+            <nav class="menu-list">
+                <a href=""><button>Produtos</button></a>
+                <a href="cardapio-admin.html"><button>Cardapio</button></a>
+            </nav>
+        </aside>
+
+    <div class="perfil-container">
+        <h2>Seu Restaurante</h2>
+        <p class="subtitle">Gerencie as informações públicas do seu restaurante</p>
+        
+            <form class="perfil-form">
+                
+                <div class="avatar-upload">
+                    <div class="avatar-preview">
+                        <span class="placeholder-icon">📸</span>
+                    </div>
+                    <label for="image-input" class="btn-secondary">Alterar Logo</label>
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="restaurant-name">Nome do Restaurante</label>
+                    <input type="text" id="restaurant-name" placeholder="Ex: Pizzaria do Jhow">
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="restaurant-desc">Descrição</label>
+                    <textarea id="restaurant-desc" rows="4" placeholder="Conte um pouco sobre o seu restaurante, especialidades, etc..."></textarea>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="restaurant-category">Categoria</label>
+                    <select id="restaurant-category">
+                        <option value="pizzaria">Pizzaria</option>
+                        <option value="hamburgueria">Hamburgueria</option>
+                        <option value="japonesa">Comida Japonesa</option>
+                        <option value="variada">Variada</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-save">Salvar Alterações</button>
+            </form>
+    </div>
+
+    
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <script src="../js/cardapio-admin.js"></script>
+    
+</body>
+</html>
