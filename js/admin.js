@@ -32,6 +32,8 @@ function carregarPerfil() {
     document.getElementById("previewLogo").style.display = "block";
   }
 
+  document.getElementById("codigoRestaurante").textContent = restaurante.codigo || "Sem código";
+
   // Começa com campos desabilitados
   toggleEdicao(false);
 }
