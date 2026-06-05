@@ -17,12 +17,10 @@ function formatarCNPJ(input) {
 
 function cadastrarRestaurante() {
 
-  const nomeR = document.getElementById("inputNomeR").value;
   const emailR = document.getElementById("inputEmailR").value;
   const cnpj = document.getElementById("inputCNPJ").value;
-  const desc = document.getElementById("inputDesc").value;
 
-  if (nomeR === "" || emailR === "" || cnpj === "") {
+  if (emailR === "" || cnpj === "") {
     alert("Preencha todos os campos!");
     return;
   }
@@ -31,10 +29,8 @@ function cadastrarRestaurante() {
     JSON.parse(localStorage.getItem("estabelecimentos")) || [];
 
   const restaurante = {
-    nomeR,
     emailR,
     cnpj,
-    desc
   };
 
   estabelecimentos.push(restaurante);
@@ -55,7 +51,7 @@ function loginRestaurante() {
     document.getElementById("loginEmail").value;
 
   const cnpj =
-    document.getElementById("loginCPF").value;
+    document.getElementById("loginCNPJ").value;
 
   const estabelecimentos =
     JSON.parse(localStorage.getItem("estabelecimentos")) || [];
@@ -71,12 +67,12 @@ function loginRestaurante() {
 
     localStorage.setItem(
       "restauranteAtual",
-      JSON.stringify(usuarioEncontrado)
+      JSON.stringify(restauranteEncontrado)
     );
 
     alert("Login realizado!");
 
-    window.location.href = "cardapio-admin.html";
+    window.location.href = "perfil-restaurante.html";
 
   } else {
 
