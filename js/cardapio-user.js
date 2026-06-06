@@ -104,7 +104,7 @@ function atualizarCarrinho() {
     div.appendChild(containerBotao);
 
     document.getElementById('finalizar').addEventListener('click', () => {
-        alert('Pedido finalizado com sucesso!');
+        mudarAba('checkout-section');
     });
 }
 
