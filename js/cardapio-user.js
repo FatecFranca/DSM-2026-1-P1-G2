@@ -29,7 +29,7 @@ function carregarCardapio() {
     const item = document.createElement('div');
     item.classList.add('card-produto');
     item.innerHTML = `
-      <img src="${produto.imagem || `https://picsum.photos/300/200?random=${produto.id}`}" alt="${produto.nome}">
+      <img src="${produto.imagem}" alt="${produto.nome}">
 
       <div class="info-produto">
         <h3>${produto.nome}</h3>
@@ -48,7 +48,30 @@ function adicionarCarrinho(id) {
   if (!produto) return;
   carrinho.push(produto);
   atualizarCarrinho();
-  alert('Produto adicionado ao carrinho!');
+  mostrarModalAdicionado(produto.nome);
+}
+
+function mostrarModalAdicionado(nomeProduto) {
+  const existente = document.getElementById('modal-carrinho');
+  if (existente) existente.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'modal-carrinho';
+  modal.innerHTML = `
+    <div class="modal-icone">🛒</div>
+    <div class="modal-texto">
+      <strong>${nomeProduto}</strong>
+      <span>adicionado ao carrinho!</span>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  requestAnimationFrame(() => modal.classList.add('visivel'));
+
+  setTimeout(() => {
+    modal.classList.remove('visivel');
+    modal.addEventListener('transitionend', () => modal.remove(), { once: true });
+  }, 2500);
 }
 
 function atualizarContadorCarrinho() {
