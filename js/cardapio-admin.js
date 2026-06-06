@@ -2,6 +2,37 @@ const botao = document.getElementById("adicionar");
 const fileInput = document.getElementById("imagemProduto");
 const previewProduto = document.getElementById("previewProduto");
 
+
+function comprimirImagem(file, callback) {
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const MAX_WIDTH = 400;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > MAX_WIDTH) {
+        height *= MAX_WIDTH / width;
+        width = MAX_WIDTH;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.6);
+      callback(dataUrl);
+    };
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 fileInput.addEventListener("change", () => {
   if (fileInput.files && fileInput.files[0]) {
     const reader = new FileReader();
@@ -19,7 +50,7 @@ fileInput.addEventListener("change", () => {
 botao.addEventListener("click", () => {
   const nome = document.getElementById("nome").value.trim();
   const preco = document.getElementById("preco").value.trim();
-  const descricao = document.getElementById("descricao").value.trim()
+  const descricao = document.getElementById("descricao").value.trim();
   const restauranteAtual = JSON.parse(localStorage.getItem("restauranteAtual")) || {};
 
   if (!nome || !preco || !descricao) {
@@ -27,7 +58,6 @@ botao.addEventListener("click", () => {
     return;
   }
 
-  const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
   const novoProduto = {
     id: Date.now(),
     nome,
@@ -39,24 +69,29 @@ botao.addEventListener("click", () => {
   };
 
   if (fileInput.files && fileInput.files[0]) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      novoProduto.imagem = reader.result;
+    
+    comprimirImagem(fileInput.files[0], (imagemComprimida) => {
+      novoProduto.imagem = imagemComprimida;
       salvarProduto(novoProduto);
-    };
-    reader.readAsDataURL(fileInput.files[0]);
+    });
   } else {
     salvarProduto(novoProduto);
   }
 });
 
 function salvarProduto(produto) {
-  const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
-  cardapio.push(produto);
-  localStorage.setItem("cardapio", JSON.stringify(cardapio));
-  carregarProdutos();
-  limparFormulario();
-  alert("Produto adicionado!");
+  try {
+    const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
+    cardapio.push(produto);
+    localStorage.setItem("cardapio", JSON.stringify(cardapio));
+    carregarProdutos();
+    limparFormulario();
+    alert("Produto adicionado!");
+  } catch (error) {
+    
+    console.error(error);
+    alert("Erro ao salvar: O armazenamento está cheio! Tente usar uma imagem menor ou limpe o cardápio.");
+  }
 }
 
 function limparFormulario() {
@@ -76,6 +111,7 @@ function carregarProdutos() {
     : [];
 
   const lista = document.getElementById("lista-produtos");
+  if (!lista) return; 
   lista.innerHTML = "";
 
   if (produtosDoRestaurante.length === 0) {
@@ -99,13 +135,9 @@ function carregarProdutos() {
 }
 
 function removerProduto(id) {
-
   let cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
-
   cardapio = cardapio.filter(produto => produto.id !== id);
-
   localStorage.setItem("cardapio", JSON.stringify(cardapio));
-
   carregarProdutos();
 }
 
@@ -117,6 +149,7 @@ function carregarPedidos() {
     : [];
 
   const div = document.getElementById("pedidos");
+  if (!div) return; 
   div.innerHTML = "";
 
   if (pedidosDoRestaurante.length === 0) {
@@ -140,7 +173,5 @@ function carregarPedidos() {
 }
 
 carregarProdutos();
-
 carregarPedidos();
-
 setInterval(carregarPedidos, 3000);
