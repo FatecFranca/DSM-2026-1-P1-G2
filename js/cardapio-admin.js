@@ -20,6 +20,7 @@ botao.addEventListener("click", () => {
   const nome = document.getElementById("nome").value.trim();
   const preco = document.getElementById("preco").value.trim();
   const descricao = document.getElementById("descricao").value.trim()
+  const restauranteAtual = JSON.parse(localStorage.getItem("restauranteAtual")) || {};
 
   if (!nome || !preco || !descricao) {
     alert("Preencha o nome, preço, e a descrição do produto.");
@@ -32,7 +33,9 @@ botao.addEventListener("click", () => {
     nome,
     preco,
     descricao,
-    imagem: null
+    imagem: null,
+    restauranteCnpj: restauranteAtual.cnpj || null,
+    restauranteNome: restauranteAtual.nomeR || 'Desconhecido'
   };
 
   if (fileInput.files && fileInput.files[0]) {
@@ -66,19 +69,23 @@ function limparFormulario() {
 }
 
 function carregarProdutos() {
-
+  const restauranteAtual = JSON.parse(localStorage.getItem("restauranteAtual"));
   const cardapio = JSON.parse(localStorage.getItem("cardapio")) || [];
+  const produtosDoRestaurante = restauranteAtual
+    ? cardapio.filter(produto => produto.restauranteCnpj === restauranteAtual.cnpj)
+    : [];
 
   const lista = document.getElementById("lista-produtos");
-
   lista.innerHTML = "";
 
-  cardapio.forEach(produto => {
+  if (produtosDoRestaurante.length === 0) {
+    lista.innerHTML = '<p>Nenhum produto cadastrado ainda.</p>';
+    return;
+  }
 
+  produtosDoRestaurante.forEach(produto => {
     const div = document.createElement("div");
-
     div.classList.add("produto-admin");
-
     div.innerHTML = `
       ${produto.imagem ? `<img src="${produto.imagem}" alt="Imagem do ${produto.nome}" class="produto-imagem">` : ""}
       <h3>${produto.nome}</h3>
@@ -87,7 +94,6 @@ function carregarProdutos() {
         Excluir
       </button>
     `;
-
     lista.appendChild(div);
   });
 }
@@ -104,31 +110,31 @@ function removerProduto(id) {
 }
 
 function carregarPedidos() {
-
+  const restauranteAtual = JSON.parse(localStorage.getItem("restauranteAtual"));
   const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+  const pedidosDoRestaurante = restauranteAtual
+    ? pedidos.filter(pedido => pedido.restauranteCnpj === restauranteAtual.cnpj)
+    : [];
 
   const div = document.getElementById("pedidos");
-
   div.innerHTML = "";
 
-  pedidos.forEach(pedido => {
+  if (pedidosDoRestaurante.length === 0) {
+    div.innerHTML = '<p>Nenhum pedido recebido ainda.</p>';
+    return;
+  }
 
+  pedidosDoRestaurante.forEach(pedido => {
     const pedidoDiv = document.createElement("div");
-
     pedidoDiv.classList.add("pedido-admin");
-
     pedidoDiv.innerHTML = `
       <h3>Pedido #${pedido.numero}</h3>
-
       <p>Status: ${pedido.status}</p>
-
       <hr>
-
       ${pedido.itens.map(item => `
         <p>${item.nome} - ${item.preco}</p>
       `).join("")}
     `;
-
     div.appendChild(pedidoDiv);
   });
 }

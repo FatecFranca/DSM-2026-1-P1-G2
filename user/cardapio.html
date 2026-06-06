@@ -27,7 +27,9 @@
         <h2>Cardápio</h2>
       </div>
 
+      <div id="restaurante-header" class="restaurante-header"></div>
       <div id="cardapio" class="cardapio-grid"></div>
+      <div id="restaurante-pedidos" class="restaurante-pedidos"></div>
     </section>
 
     <section id="carrinho-section" class="tab-section">
@@ -50,8 +52,43 @@
         <p>Revise seu pedido antes de confirmar o pagamento.</p>
         <ul id="checkout-items"></ul>
         <div class="checkout-total"></div>
+
+        <div class="checkout-payment">
+          <h3>Forma de pagamento</h3>
+          <div class="payment-methods">
+            <button type="button" class="payment-method-btn active" data-method="pix">PIX</button>
+            <button type="button" class="payment-method-btn" data-method="card">Cartão de Crédito</button>
+          </div>
+
+          <div id="payment-details" class="payment-details">
+            <div id="pix-info" class="payment-method-info">
+              <p>Use a chave PIX abaixo:</p>
+              <strong>pix@restaurante.com</strong>
+            </div>
+            <div id="card-info" class="payment-method-info" style="display:none;">
+              <p>Digite os dados do cartão:</p>
+              <div class="field">
+                <label for="card-number">Número do Cartão</label>
+                <input id="card-number" type="text" maxlength="19" placeholder="0000 0000 0000 0000">
+              </div>
+              <div class="field">
+                <label for="card-name">Nome no Cartão</label>
+                <input id="card-name" type="text" placeholder="Nome impresso no cartão">
+              </div>
+              <div class="field">
+                <label for="card-expiry">Validade (MM/AA)</label>
+                <input id="card-expiry" type="text" maxlength="5" placeholder="MM/AA">
+              </div>
+              <div class="field">
+                <label for="card-cvv">CVV</label>
+                <input id="card-cvv" type="text" maxlength="4" placeholder="CVV">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <button id="confirmar-pagamento">
-          Confirmar Pagamento
+          Finalizar Pedido
         </button>
       </div>
     </section>

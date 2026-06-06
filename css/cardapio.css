@@ -126,6 +126,61 @@ body {
   color: #c65800;
 }
 
+.restaurante-header {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(198, 88, 0, 0.12);
+  border-radius: 22px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.restaurante-header h3 {
+  margin: 0 0 8px;
+  color: #c65800;
+  font-size: 1.5rem;
+}
+
+.restaurante-header p {
+  margin: 0;
+  color: #555;
+}
+
+.restaurante-pedidos {
+  margin-top: 24px;
+}
+
+.restaurante-pedidos h3 {
+  margin-bottom: 12px;
+  color: #c65800;
+}
+
+.pedido-cliente {
+  background: #fff;
+  border: 1px solid rgba(198, 88, 0, 0.12);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.pedido-cliente h4 {
+  margin: 0 0 10px;
+  color: #c65800;
+}
+
+.pedido-cliente ul {
+  padding-left: 18px;
+  margin: 10px 0 0;
+}
+
+.mensagem-erro,
+.sem-pedidos {
+  background: #fff4e6;
+  border: 1px solid rgba(198, 88, 0, 0.18);
+  color: #7a4715;
+  border-radius: 18px;
+  padding: 16px;
+}
+
 #confirmar-pagamento {
   margin-top: 20px;
   width: 100%;
@@ -140,6 +195,39 @@ body {
 
 #confirmar-pagamento:hover {
   opacity: 0.95;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.payment-method-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid rgba(198, 88, 0, 0.25);
+  border-radius: 14px;
+  background: #fff;
+  color: #c65800;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.payment-method-btn.active,
+.payment-method-btn:hover {
+  background: linear-gradient(180deg, #f5714d, #f2994c);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.payment-method-info {
+  background: #fff;
+  border: 1px solid rgba(198, 88, 0, 0.12);
+  border-radius: 18px;
+  padding: 16px;
+  margin-top: 12px;
 }
 
 .user-conteudo .page-header {
@@ -527,8 +615,6 @@ body {
   margin-left: 8px;
 }
 
-/* --- ESTILOS DO CARRINHO (ADICIONE NO FINAL DO ARQUIVO) --- */
-
 .item-carrinho {
     display: flex;
     justify-content: space-between;
@@ -612,4 +698,42 @@ body {
     font-style: italic;
     text-align: center;
     padding: 20px;
+}
+
+#modal-carrinho {
+  position: fixed;
+  bottom: -100px;           /* começa fora da tela */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 2px solid #22c55e;
+  border-radius: 12px;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  z-index: 9999;
+  transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+#modal-carrinho.visivel {
+  bottom: 32px;             /* sobe para aparecer */
+}
+
+.modal-icone {
+  font-size: 1.5rem;
+}
+
+.modal-texto {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modal-texto strong {
+  font-size: 1rem;
+  color: #16a34a;
 }
