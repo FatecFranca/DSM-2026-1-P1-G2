@@ -14,11 +14,11 @@
             <img src="../images/logotipo-keru-nobg.png" alt="Keru Logo">
         </div>
         <div class="select-box">
-            <h3>Digite o código do restaurante</h3>
-            <form id="restaurant-code-form" class="form">
+            <h3>Digite o nome do restaurante</h3>
+            <form id="restaurant-name-form" class="form">
                 <div class="field">
-                    <label for="restaurant-code">Código:</label>
-                    <input id="inputCodigo" type="text" maxlength="10" placeholder="Ex: 1001" required>
+                    <label for="restaurant-name">Nome do Restaurante:</label>
+                    <input id="inputCodigo" type="text" maxlength="50" placeholder="Ex: Restaurante Bom Sabor" required>
                 </div>
                 <div class="opt-login">
                     <button type="button" onclick="acessarCardapio()">Mostrar Restaurante</button>
@@ -35,21 +35,21 @@
         
 
     function acessarCardapio() {
-        const codigo = document.getElementById("inputCodigo").value.trim().toUpperCase();
+        const nomeRestaurante = document.getElementById("inputCodigo").value.trim().toLowerCase();
 
-        if (!codigo) {
-            alert("Digite o código do restaurante!");
+        if (!nomeRestaurante) {
+            alert("Digite o nome do restaurante!");
             return;
         }
 
         const estabelecimentos = JSON.parse(localStorage.getItem("estabelecimentos")) || [];
-        const restaurante = estabelecimentos.find(r => r.codigo === codigo);
+        const restaurante = estabelecimentos.find(r => (r.nomeR || "").toLowerCase() === nomeRestaurante);
 
         if (!restaurante) {
             const result = document.getElementById("restaurant-result");
             const msg = document.getElementById("restaurant-message");
             result.style.display = "block";
-            msg.textContent = "Código inválido. Verifique e tente novamente.";
+            msg.textContent = "Nome do restaurante inválido. Verifique e tente novamente.";
             return;
         }
 
