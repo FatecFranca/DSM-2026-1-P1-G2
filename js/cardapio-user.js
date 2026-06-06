@@ -198,8 +198,6 @@ function removerCarrinho(index) {
     atualizarCarrinho();
 }
 
- 
-
 function atualizarCheckout() {
   const lista = document.getElementById('checkout-items');
   const total = document.querySelector('.checkout-total');
@@ -250,6 +248,7 @@ document.querySelectorAll('.payment-method-btn').forEach(button => {
 
 atualizarMetodoPagamento();
 
+// EVENTO DE CONFIRMAÇÃO MODIFICADO PARA CHAMAR O POP-UP
 document.getElementById('confirmar-pagamento').addEventListener('click', () => {
   if (carrinho.length === 0) {
     alert('O carrinho está vazio.');
@@ -283,15 +282,84 @@ document.getElementById('confirmar-pagamento').addEventListener('click', () => {
   localStorage.setItem('pedidos', JSON.stringify(pedidos));
 
   alert(`Pagamento via ${metodoPagamento.toUpperCase()} confirmado! Pedido enviado.`);
-  carrinho = [];
-  atualizarCarrinho();
-  mudarAba('cardapio-section');
-  carregarPedidosRestaurante();
+  
+  // Chama o pop-up de avaliação passando os dados necessários
+  mostrarPopUpAvaliacao(numeroPedido, restauranteCliente?.cnpj);
 });
+
+// NOVA FUNÇÃO DO POP-UP DE AVALIAÇÃO ADICIONADA AQUI
+function mostrarPopUpAvaliacao(numeroPedido, restauranteCnpj) {
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-avaliacao-overlay';
+  
+  overlay.innerHTML = `
+    <div class="modal-avaliacao">
+      <h3>Avalie sua experiência!</h3>
+      <p>O que achou do processo de pedido para o restaurante?</p>
+      
+      <div class="estrelas-container">
+        <span class="estrela" data-value="1">★</span>
+        <span class="estrela" data-value="2">★</span>
+        <span class="estrela" data-value="3">★</span>
+        <span class="estrela" data-value="4">★</span>
+        <span class="estrela" data-value="5">★</span>
+      </div>
+      
+      <button class="btn-enviar-avaliacao" id="btn-salvar-avaliacao" disabled>Enviar Avaliação</button>
+    </div>
+  `;
+  
+  document.body.appendChild(overlay);
+  
+  // Efeito de transição suave de entrada
+  requestAnimationFrame(() => overlay.classList.add('visivel'));
+
+  let notaSelecionada = 0;
+  const estrelas = overlay.querySelectorAll('.estrela');
+  const btnEnviar = overlay.querySelector('#btn-salvar-avaliacao');
+
+  estrelas.forEach(estrela => {
+    estrela.addEventListener('click', () => {
+      notaSelecionada = parseInt(estrela.dataset.value);
+      btnEnviar.disabled = false;
+
+      estrelas.forEach(est => {
+        if (parseInt(est.dataset.value) <= notaSelecionada) {
+          est.classList.add('ativa');
+        } else {
+          est.classList.remove('ativa');
+        }
+      });
+    });
+  });
+
+  btnEnviar.addEventListener('click', () => {
+    const avaliacoes = JSON.parse(localStorage.getItem('avaliacoes')) || [];
+    avaliacoes.push({
+      pedido: numeroPedido,
+      restauranteCnpj: restauranteCnpj,
+      nota: notaSelecionada,
+      data: new Date().toLocaleDateString('pt-BR')
+    });
+    localStorage.setItem('avaliacoes', JSON.stringify(avaliacoes));
+
+    alert('Obrigado pela sua avaliação!');
+
+    overlay.classList.remove('visivel');
+    overlay.addEventListener('transitionend', () => {
+      overlay.remove();
+      
+      // Executa o final da sua função original após fechar o pop-up
+      carrinho = [];
+      atualizarCarrinho();
+      mudarAba('cardapio-section');
+      carregarPedidosRestaurante();
+    }, { once: true });
+  });
+}
 
 carregarCardapio();
 atualizarCarrinho();
 prepararRestaurante();
 
 setInterval(carregarCardapio, 3000);
-

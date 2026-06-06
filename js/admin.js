@@ -12,7 +12,7 @@ function carregarPerfil() {
   }
   document.getElementById("nRest").textContent = restaurante.nomeR.toUpperCase() || "";
 
-  // Preenche o select de categorias
+  
   const select = document.getElementById("perfilCategoria");
   categorias.forEach(cat => {
     const option = document.createElement("option");
@@ -22,11 +22,11 @@ function carregarPerfil() {
     select.appendChild(option);
   });
 
-  // Preenche os campos
+  
   document.getElementById("perfilNome").value = restaurante.nomeR || "";
   document.getElementById("perfilDesc").value = restaurante.desc || "";
 
-  // Preview da logo
+  
   if (restaurante.logo) {
     document.getElementById("previewLogo").src = restaurante.logo;
     document.getElementById("previewLogo").style.display = "block";
@@ -34,7 +34,7 @@ function carregarPerfil() {
 
   document.getElementById("codigoRestaurante").textContent = restaurante.codigo || "Sem código";
 
-  // Começa com campos desabilitados
+  
   toggleEdicao(false);
 }
 
@@ -55,7 +55,7 @@ function alterarPerfil() {
 }
 
 function cancelarEdicao() {
-  carregarPerfil(); // Restaura os valores originais
+  carregarPerfil(); 
   toggleEdicao(false);
 }
 
@@ -71,7 +71,7 @@ function salvarPerfil() {
 
   const restauranteAtual = JSON.parse(localStorage.getItem("restauranteAtual"));
 
-  // Atualiza logo se enviou uma nova
+  
   const fileInput = document.getElementById("inputLogo");
   if (fileInput.files && fileInput.files[0]) {
     const reader = new FileReader();
@@ -93,10 +93,10 @@ function finalizarSalvamento(restauranteAtual, nomeR, desc, categoria, logo) {
     logo
   };
 
-  // Atualiza restauranteAtual
+  
   localStorage.setItem("restauranteAtual", JSON.stringify(restauranteAtualizado));
 
-  // Atualiza também no array de estabelecimentos
+  
   const estabelecimentos = JSON.parse(localStorage.getItem("estabelecimentos")) || [];
   const index = estabelecimentos.findIndex(r => r.cnpj === restauranteAtual.cnpj);
   if (index !== -1) {
@@ -104,7 +104,7 @@ function finalizarSalvamento(restauranteAtual, nomeR, desc, categoria, logo) {
     localStorage.setItem("estabelecimentos", JSON.stringify(estabelecimentos));
   }
 
-  // Atualiza preview da logo
+  
   if (logo) {
     document.getElementById("previewLogo").src = logo;
     document.getElementById("previewLogo").style.display = "block";

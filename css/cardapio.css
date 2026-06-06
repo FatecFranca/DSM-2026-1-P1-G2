@@ -737,3 +737,78 @@ body {
   font-size: 1rem;
   color: #16a34a;
 }
+
+/* Container do Modal de Avaliação */
+.modal-avaliacao-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-avaliacao-overlay.visivel {
+  opacity: 1;
+}
+
+.modal-avaliacao {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal-avaliacao-overlay.visivel .modal-avaliacao {
+  transform: scale(1);
+}
+
+.estrelas-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.estrela {
+  font-size: 35px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.estrela:hover {
+  transform: scale(1.2);
+}
+
+.estrela.ativa {
+  color: #c65800; 
+}
+
+.btn-enviar-avaliacao {
+  background: #f27435; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-enviar-avaliacao:hover {
+  background-color: #d9531e;
+}
