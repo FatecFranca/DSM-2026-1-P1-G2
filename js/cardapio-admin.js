@@ -19,9 +19,10 @@ fileInput.addEventListener("change", () => {
 botao.addEventListener("click", () => {
   const nome = document.getElementById("nome").value.trim();
   const preco = document.getElementById("preco").value.trim();
+  const descricao = document.getElementById("descricao").value.trim()
 
-  if (!nome || !preco) {
-    alert("Preencha o nome e o preço do produto.");
+  if (!nome || !preco || !descricao) {
+    alert("Preencha o nome, preço, e a descrição do produto.");
     return;
   }
 
@@ -30,6 +31,7 @@ botao.addEventListener("click", () => {
     id: Date.now(),
     nome,
     preco,
+    descricao,
     imagem: null
   };
 
@@ -57,6 +59,7 @@ function salvarProduto(produto) {
 function limparFormulario() {
   document.getElementById("nome").value = "";
   document.getElementById("preco").value = "";
+  document.getElementById("descricao").value = "";
   fileInput.value = "";
   previewProduto.src = "";
   previewProduto.style.display = "none";

@@ -33,6 +33,7 @@ function carregarCardapio() {
 
       <div class="info-produto">
         <h3>${produto.nome}</h3>
+        <p class="descricao">${produto.descricao}</p>
         <p class="preco">${produto.preco}</p>
         <button onclick="adicionarCarrinho(${produto.id})">Adicionar ao carrinho</button>
       </div>
@@ -50,29 +51,71 @@ function adicionarCarrinho(id) {
   alert('Produto adicionado ao carrinho!');
 }
 
-function atualizarCarrinho() {
-  const div = document.getElementById('carrinho');
-  div.innerHTML = '';
+function atualizarContadorCarrinho() {
+  const contador = document.getElementById('contador-carrinho');
 
-  if (carrinho.length === 0) {
-    div.innerHTML = '<p>O carrinho está vazio.</p>';
-    return;
+  if (contador) {
+    contador.textContent = carrinho.length;
   }
-
-  carrinho.forEach(item => {
-    const produto = document.createElement('div');
-    produto.innerHTML = `${item.nome} - ${item.preco}`;
-    div.appendChild(produto);
-  });
 }
 
-document.getElementById('finalizar').addEventListener('click', () => {
-  if (carrinho.length === 0) {
-    alert('Adicione produtos ao carrinho antes de finalizar.');
-    return;
-  }
-  mudarAba('checkout-section');
-});
+function atualizarCarrinho() {
+    const div = document.getElementById('carrinho');
+    div.innerHTML = '';
+
+    atualizarContadorCarrinho();
+
+    if (carrinho.length === 0) {
+        div.innerHTML = '<p class="carrinho-vazio">O carrinho está vazio.</p>';
+        return;
+    }
+
+    // Renderiza os itens
+    carrinho.forEach((item, index) => {
+        const produto = document.createElement('div');
+        produto.classList.add('item-carrinho'); 
+
+        produto.innerHTML = `
+            <div class="detalhes-produto">
+                <span class="nome-produto">${item.nome}</span>
+                <span class="preco-produto">R$ ${item.preco}</span>
+            </div>
+            <button class="btn-remover" onclick="removerCarrinho(${index})">
+                ❌
+            </button>
+        `;
+
+        div.appendChild(produto);
+    });
+
+    // Injeta o botão de finalizar bonito
+    const containerBotao = document.createElement('div');
+    containerBotao.style.display = 'flex';
+    containerBotao.style.justify = 'center'; /* Centraliza o botão */
+    containerBotao.style.width = '100%';
+    containerBotao.style.padding = '10px 0'; 
+    containerBotao.style.background = 'none';
+    
+    containerBotao.innerHTML = `
+        <button id="finalizar" class="btn-finalizar-pedido">
+            Finalizar Pedido <span class="seta-btn">→</span>
+        </button>
+    `;
+    
+    div.appendChild(containerBotao);
+
+    // Evento do botão de finalizar
+    document.getElementById('finalizar').addEventListener('click', () => {
+        alert('Pedido finalizado com sucesso!');
+    });
+}
+
+function removerCarrinho(index) {
+    carrinho.splice(index, 1);
+    atualizarCarrinho();
+}
+
+ 
 
 function atualizarCheckout() {
   const lista = document.getElementById('checkout-items');
