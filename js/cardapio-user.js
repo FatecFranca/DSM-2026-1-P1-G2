@@ -106,7 +106,7 @@ function atualizarCarrinho() {
 
     // Evento do botão de finalizar
     document.getElementById('finalizar').addEventListener('click', () => {
-        alert('Pedido finalizado com sucesso!');
+        mudarAba('checkout-section');
     });
 }
 
