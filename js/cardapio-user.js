@@ -88,10 +88,9 @@ function atualizarCarrinho() {
         div.appendChild(produto);
     });
 
-    // Injeta o botão de finalizar bonito
     const containerBotao = document.createElement('div');
     containerBotao.style.display = 'flex';
-    containerBotao.style.justify = 'center'; /* Centraliza o botão */
+    containerBotao.style.justify = 'center'; 
     containerBotao.style.width = '100%';
     containerBotao.style.padding = '10px 0'; 
     containerBotao.style.background = 'none';
@@ -104,7 +103,6 @@ function atualizarCarrinho() {
     
     div.appendChild(containerBotao);
 
-    // Evento do botão de finalizar
     document.getElementById('finalizar').addEventListener('click', () => {
         alert('Pedido finalizado com sucesso!');
     });
