@@ -11,12 +11,13 @@ Repositório do **Grupo 02** do Projeto Interdisciplinar do **1º semestre** do 
 -   **[Alexsander Gabriel Pires](https://github.com/LostWorlddd)**
 -   **[Guilherme Teixeira Ferreira](https://github.com/guilherme-txra)**
 -   **[Leonardo de Melo Ernesto](https://github.com/leonardo-meloe)**
--   **[Pietro Reis](https://github.com/PietroReis-07)**
+-   **[Pietro Reis Dias](https://github.com/PietroReis-07)**
 
 ## 📖 Sobre o Projeto
 
 O **KERU** é um cardápio online onde seu principal objetivo é facilitar o processo de pedidos e atendimento, focado na agilidade para o cliente de forma a conseguir realizar o pedido antes mesmo de chegar no local.
 
+🎬 [Assista ao vídeo de apresentação e funcionamento do software](https://youtu.be/M3684vxudC4?si=_1UJL9yYMvNPcmaM)
 
 ## Funcionalidades
 
