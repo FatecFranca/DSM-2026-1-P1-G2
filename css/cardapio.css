@@ -702,7 +702,7 @@ body {
 
 #modal-carrinho {
   position: fixed;
-  bottom: -100px;           /* começa fora da tela */
+  bottom: -100px;           
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
@@ -719,7 +719,7 @@ body {
 }
 
 #modal-carrinho.visivel {
-  bottom: 32px;             /* sobe para aparecer */
+  bottom: 32px;             
 }
 
 .modal-icone {
@@ -738,7 +738,7 @@ body {
   color: #16a34a;
 }
 
-/* Container do Modal de Avaliação */
+
 .modal-avaliacao-overlay {
   position: fixed;
   top: 0;

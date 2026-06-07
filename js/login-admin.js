@@ -17,7 +17,7 @@ function formatarCNPJ(input) {
 
 function gerarCodigo(nomeR) {
   const prefixo = nomeR.toUpperCase().replace(/\s/g, "").slice(0, 4);
-  const numeros = Math.floor(1000 + Math.random() * 9000); // sempre 4 dígitos
+  const numeros = Math.floor(1000 + Math.random() * 9000); 
   return `${prefixo}-${numeros}`;
 }
 

@@ -248,7 +248,7 @@ document.querySelectorAll('.payment-method-btn').forEach(button => {
 
 atualizarMetodoPagamento();
 
-// EVENTO DE CONFIRMAÇÃO MODIFICADO PARA CHAMAR O POP-UP
+
 document.getElementById('confirmar-pagamento').addEventListener('click', () => {
   if (carrinho.length === 0) {
     alert('O carrinho está vazio.');
@@ -283,11 +283,11 @@ document.getElementById('confirmar-pagamento').addEventListener('click', () => {
 
   alert(`Pagamento via ${metodoPagamento.toUpperCase()} confirmado! Pedido enviado.`);
   
-  // Chama o pop-up de avaliação passando os dados necessários
+  
   mostrarPopUpAvaliacao(numeroPedido, restauranteCliente?.cnpj);
 });
 
-// NOVA FUNÇÃO DO POP-UP DE AVALIAÇÃO ADICIONADA AQUI
+
 function mostrarPopUpAvaliacao(numeroPedido, restauranteCnpj) {
   const overlay = document.createElement('div');
   overlay.className = 'modal-avaliacao-overlay';
@@ -311,7 +311,7 @@ function mostrarPopUpAvaliacao(numeroPedido, restauranteCnpj) {
   
   document.body.appendChild(overlay);
   
-  // Efeito de transição suave de entrada
+  
   requestAnimationFrame(() => overlay.classList.add('visivel'));
 
   let notaSelecionada = 0;
@@ -349,7 +349,7 @@ function mostrarPopUpAvaliacao(numeroPedido, restauranteCnpj) {
     overlay.addEventListener('transitionend', () => {
       overlay.remove();
       
-      // Executa o final da sua função original após fechar o pop-up
+      
       carrinho = [];
       atualizarCarrinho();
       mudarAba('cardapio-section');
